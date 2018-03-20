@@ -1,0 +1,205 @@
+<style type="text/css">
+.spinner {
+  margin: 100px auto;
+  width: 50px;
+  height: 40px;
+  text-align: center;
+  font-size: 10px;
+}
+
+.spinner > div {
+  background-color: #333;
+  height: 100%;
+  width: 6px;
+  display: inline-block;
+  
+  -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-stretchdelay {
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
+  20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes sk-stretchdelay {
+  0%, 40%, 100% { 
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }  20% { 
+    transform: scaleY(1.0);
+    -webkit-transform: scaleY(1.0);
+  }
+}
+</style>
+
+<div class="widgets">
+	<div class="row">
+		<div class="col-md-12"
+   ba-panel
+   ba-panel-title="Inline Form"
+   ba-panel-class="with-scroll">
+
+
+   <form class="row form-inline">
+    <div class="form-group col-sm-3 col-xs-6">
+     <input type="text" class="form-control" id="notsid" ng-model="formObject.sid" placeholder="Sid">
+   </div>
+   <div class="form-group col-sm-3 col-xs-6">
+     <input type="text" class="form-control" id="ip" ng-model="formObject.ipaddress" placeholder="IP Address">
+   </div>
+
+   <button type="submit" ng-click="submit(formObject)" class="btn btn-primary">Submit</button>
+ </form>
+</div>
+</div>
+</div>
+
+<div class="horizontal-scroll" ng-show="show_reason_table">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th class="align-middle">Date</th>
+        <th class="align-middle">SID</th>
+        <th class="align-middle">IP Address</th>
+        <th class="align-middle">Source</th>
+        <th class="align-middle">Rule</th>
+        <th class="align-middle"></th>
+        <th class="align-middle"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in reason_data.data">
+        <td ng-class="nowrap">{{item.Date}}</td>
+        <td class="align-middle">{{item.SID}}</td>
+        <td class="align-middle">{{item.ip_address}}</td>
+        <td class="align-middle">{{item.source}}</td>
+        <td class="align-middle">{{item.rule}}</td>
+        <td class="align-middle"><button type="button" class="btn btn-danger" ng-click="get_detailed_stat_for_ip(item)">Aggregated Stats</button></td>
+        <td class="align-middle"><button type="button" class="btn btn-danger" ng-click="get_raw_packet(item)">Detailed Stats</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- <div class="btn-group-example" ng-show="show_reason_table">
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-danger" ng-click="get_detailed_stat_for_ip()">Aggregated Stats</button>
+    <button type="button" class="btn btn-danger" ng-click="get_raw_packet()">Raw Packet</button>
+  </div>
+</div> -->
+<!-- <div class="spinner" ng-show="requesting_backend"></div> -->
+<div class="spinner" ng-show="requesting_backend">
+  <div class="rect1"></div>
+  <div class="rect2"></div>
+  <div class="rect3"></div>
+  <div class="rect4"></div>
+  <div class="rect5"></div>
+</div>
+
+<div class="horizontal-scroll">
+  <div ng-show="show_ip_stats">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th class="align-middle">IP</th>
+          <th class="align-middle">Count</th>
+          <th class="align-middle">uniq_hours</th>
+          <th class="align-middle">uniq_minutes</th>
+          <th class="align-middle">duzma</th>
+          <th class="align-middle">duzmc</th>
+          <th class="align-middle">dref</th>
+          <th class="align-middle">durl</th>
+          <th class="align-middle">dses</th>
+          <th class="align-middle">dua</th>
+          <th class="align-middle">bot_hits</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in detailed_data.data">
+          <td ng-class="nowrap">{{item.ip}}</td>
+          <td class="align-middle">{{item.count}}</td>
+          <td class="align-middle">{{item.uniq_hours}}</td>
+          <td class="align-middle">{{item.uniq_minutes}}</td>
+          <td class="align-middle">{{item.duzma}}</td>
+          <td class="align-middle">{{item.duzmc}}</td>
+          <td class="align-middle">{{item.dref}}</td>
+          <td class="align-middle">{{item.durl}}</td>
+          <td class="align-middle">{{item.dses}}</td>
+          <td class="align-middle">{{item.dua}}</td>
+          <td class="align-middle">{{item.bot_hits}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<div class="horizontal-scroll">
+  <div ng-show="show_raw_stats">
+    <table class="table" st-table="raw_data" st-safe-src="raw_data1">
+      <thead>
+        <tr>
+          <th class="align-middle">Time</th>
+          <th class="align-middle">UZMA</th>
+          <th class="align-middle">UZMC</th>
+          <th class="align-middle">Referrer</th>
+          <th class="align-middle">Url</th>
+          <th class="align-middle">UA</th>
+          <!-- <th class="align-middle">dref</th> -->
+          <th class="align-middle">r1</th>
+          <th class="align-middle">r2</th>
+          <th class="align-middle">r5</th>
+          <!-- <th class="align-middle">bot_hits</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in raw_data">
+          <td nowrap>{{item.apirecvtime}}</td>
+          <td nowrap class="align-middle">{{item.uzma}}</td>
+          <td nowrap class="align-middle">{{item.uzmc}}</td>
+          <td nowrap class="align-middle">{{item.referrer}}</td>
+          <td nowrap class="align-middle">{{item.url}}</td>
+          <td nowrap class="align-middle">{{item.ua}}</td>
+          <!-- <td class="align-middle">{{item.dref}}</td> -->
+          <td nowrap class="align-middle">{{item.r1}}</td>
+          <td nowrap class="align-middle">{{item.r2}}</td>
+          <td nowrap class="align-middle">{{item.r5}}</td>
+          <!-- <td class="align-middle">{{item.bot_hits}}</td> -->
+        </tr>
+      </tbody>
+      <tfoot>
+    <tr>
+      <td colspan="6" class="text-center">
+        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+      </td>
+    </tr>
+    </tfoot>
+    </table>
+  </div>
+</div>
+
+
+
+
+

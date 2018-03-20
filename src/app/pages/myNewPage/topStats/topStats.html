@@ -1,0 +1,183 @@
+<style type="text/css">
+.spinner {
+	margin: 100px auto;
+	width: 50px;
+	height: 40px;
+	text-align: center;
+	font-size: 10px;
+}
+
+.spinner > div {
+	background-color: #333;
+	height: 100%;
+	width: 6px;
+	display: inline-block;
+
+	-webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+	animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+	-webkit-animation-delay: -1.1s;
+	animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+	-webkit-animation-delay: -1.0s;
+	animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+	-webkit-animation-delay: -0.9s;
+	animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+	-webkit-animation-delay: -0.8s;
+	animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-stretchdelay {
+	0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
+	20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes sk-stretchdelay {
+	0%, 40%, 100% { 
+		transform: scaleY(0.4);
+		-webkit-transform: scaleY(0.4);
+	}  
+	20% { 
+		transform: scaleY(1.0);
+		-webkit-transform: scaleY(1.0);
+	}
+}
+</style>
+
+<div class="widgets">
+	<div class="row">
+		<div class="col-md-12" ba-panel ba-panel-title="Inline Form" ba-panel-class="with-scroll">
+
+			<form class="row form-inline">
+				<div class="form-group col-sm-3 col-xs-6">
+					<input type="text" class="form-control" id="nosid" ng-model="formObject.sid" placeholder="Enter Sid">
+				</div>
+				<div class="form-group col-sm-3 col-xs-6">
+					<input type="text" class="form-control dateTimePicker" id="sdate" ng-model="formObject.from" placeholder="From Date">
+				</div>
+				<div class="form-group col-sm-3 col-xs-6">
+					<input type="text" class="form-control dateTimePicker" id="edate" ng-model="formObject.to" placeholder="To Date">
+				</div>
+				<button type="submit" ng-click="submit(formObject)" class="btn btn-primary">Submit</button>
+			</form>
+
+		</div>
+	</div>
+</div>
+
+
+
+
+<div>
+	<div class="row">
+		<div class="col-md-12">
+			<div ba-panel ba-panel-class="with-scroll horizontal-tabs tabs-panel medium-panel">
+
+				<uib-tabset active="$tabSetStatus.activeTab">
+				<uib-tab heading="Top UA's" ng-click="myfunc()">
+
+				<div class="spinner" ng-show="requesting_backend">
+					<div class="rect1"></div>
+					<div class="rect2"></div>
+					<div class="rect3"></div>
+					<div class="rect4"></div>
+					<div class="rect5"></div>
+				</div>
+				<div ng-show="show_ua_stats">
+					<table class="table" st-table="topuadata" st-safe-src="topuadata1">
+						<thead>
+							<tr class="sortable">
+								<th st-sort="ua">Sid</th>
+								<th st-sort="count">Count</th>
+							</tr>
+							<tr>
+								<th><input st-search="ua" placeholder="Search UA" class="input-sm form-control search-input" type="search"/></th>
+								<th><input st-search="count" placeholder="Search Count" class="input-sm form-control search-input" type="search"/></th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in topuadata">
+								<td nowrap align="left">{{item.ua}}</td>
+								<td>{{item.count}}</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td colspan="6" class="text-center">
+									<div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+								</td>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+			</uib-tab>
+
+
+			<uib-tab heading="Top Section's" ng-click="getTopSecStats()">
+			<div class="spinner" ng-show="requesting_backend">
+				<div class="rect1"></div>
+				<div class="rect2"></div>
+				<div class="rect3"></div>
+				<div class="rect4"></div>
+				<div class="rect5"></div>
+			</div>
+			<div ng-show="!requesting_backend">
+				<table class="table" st-table="topurldata" st-safe-src="topurldata1">
+					<thead>
+						<tr class="sortable ">
+							<th st-sort="section">Sid</th>
+							<th st-sort="count">Count</th>
+						</tr>
+						<tr>
+							<th><input st-search="section" placeholder="Search Sections" class="input-sm form-control search-input" type="search"/></th>
+							<th><input st-search="count" placeholder="Search Count" class="input-sm form-control search-input" type="search"/></th>
+							
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in topurldata">
+							<td nowrap align="right">{{item.section}}</td>
+							<td>{{item.count}}</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="6" class="text-center">
+								<div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+
+		</uib-tab>
+	</uib-tabset>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+$(document).on("click","#sdate",function() {
+	//$('#warrantyButton').on('click',function(){alert('bb')
+		$('#sdate').datetimepicker({timepicker:true,format:'Y-m-d H:i'});
+	});
+$(document).on("click","#edate",function() {
+	//$('#warrantyButton').on('click',function(){alert('bb')
+		$('#edate').datetimepicker({timepicker:false,format:'Y-m-d H:i'});
+	});
+$(document).ready(function() {
+	$('.dateTimePicker').datetimepicker();
+});
+</script>

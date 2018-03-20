@@ -1,0 +1,43 @@
+<style type="text/css">
+.myOwnBg {
+ background-color: #00A492;
+}
+
+ul.btn-list li {
+  margin: 0px 0px 0px 2px;
+  padding: 0;
+  float: left;
+  list-style: none;
+  vertical-align: middle;
+  valign: middle;
+}
+</style>
+
+<div class="horizontal-scroll" ng-controller="FpAnalysisCtrl">
+  <table class="table" st-table="smartTableData" st-safe-src="smartTableData1">
+    <thead>
+      <!-- <tr class="sortable ">
+        <th st-sort="SID">  Sid </th>
+        <th><input st-search="SID" placeholder="Search First Name" class="input-sm form-control search-input" type="search"/></th>
+      </tr> -->
+      <tr>
+        <th st-sort="SID">  Sid </th>
+        <th><input st-search="SID" placeholder="Search Sid" class="input-sm form-control search-input" type="search"/></th>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="item in smartTableData" ng-class="{'myOwnBg': $index== selected}" ng-click="datewiseSidStats(item); select($index)" ng-cloak>
+      <td align="middle">{{item.SID}}</td>
+      <td align="right">{{item.cnt}}</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="6" class="text-center">
+        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+</div>

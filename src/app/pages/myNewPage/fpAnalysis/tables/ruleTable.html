@@ -1,0 +1,28 @@
+<div class="horizontal-scroll">
+  <table class="table" st-table="ruleTableData" st-safe-src="ruleTableData1">
+    <thead>
+    <tr class="sortable ">
+      <th st-sort="rule">Rule</th>
+      <th st-sort="count">Count</th>
+    </tr>
+    <!-- <tr>
+      <th><input st-search="rule" placeholder="Search Rule" class="input-sm form-control search-input" type="search"/></th>
+      <th><input st-search="count" placeholder="Search Count" class="input-sm form-control search-input" type="search"/></th>
+      </th>
+    </tr> -->
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in ruleTableData" ng-click="ruleTableHandler(item)">
+      <td>{{item.rule}}</td>
+      <td>{{item.count}}</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="6" class="text-center">
+        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+</div>
