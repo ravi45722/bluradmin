@@ -1,4 +1,17 @@
 <style type="text/css">
+
+.mybtn {
+  border-radius: 5px;
+  transition: all 0.1s ease;
+  font-size: 10px;
+  padding: 3px 6px;
+}
+
+/*.mybtn:hover {
+  transform: none;
+}*/
+
+
 .spinner {
   margin: 100px auto;
   width: 50px;
@@ -46,36 +59,44 @@
   0%, 40%, 100% { 
     transform: scaleY(0.4);
     -webkit-transform: scaleY(0.4);
-  }  20% { 
-    transform: scaleY(1.0);
-    -webkit-transform: scaleY(1.0);
+    }  20% { 
+      transform: scaleY(1.0);
+      -webkit-transform: scaleY(1.0);
+    }
   }
-}
-</style>
+  </style>
 
-<div class="widgets">
-	<div class="row">
-		<div class="col-md-12"
-   ba-panel
-   ba-panel-title="Inline Form"
-   ba-panel-class="with-scroll">
+  <div class="widgets">
+   <div class="row">
+    <div class="col-md-12" ba-panel ba-panel-class="with-scroll">
 
 
-   <form class="row form-inline">
-    <div class="form-group col-sm-3 col-xs-6">
-     <input type="text" class="form-control" id="notsid" ng-model="formObject.sid" placeholder="Sid">
-   </div>
-   <div class="form-group col-sm-3 col-xs-6">
-     <input type="text" class="form-control" id="ip" ng-model="formObject.ipaddress" placeholder="IP Address">
-   </div>
+     <form class="row form-inline">
+      <div class="form-group col-sm-3 col-xs-6">
+       <input type="text" class="form-control" id="notsid" ng-model="formObject.sid" placeholder="Sid">
+     </div>
+     <div class="form-group col-sm-3 col-xs-6">
+       <input type="text" class="form-control" id="ip" ng-model="formObject.ipaddress" placeholder="IP Address">
+     </div>
 
-   <button type="submit" ng-click="submit(formObject)" class="btn btn-primary">Submit</button>
- </form>
-</div>
+     <button type="submit" ng-click="submit(formObject)" class="btn btn-primary">Submit</button>
+   </form>
+ </div>
 </div>
 </div>
 
-<div class="horizontal-scroll" ng-show="show_reason_table">
+<div class="spinner" ng-show="submit_requesting_backend">
+  <div class="rect1"></div>
+  <div class="rect2"></div>
+  <div class="rect3"></div>
+  <div class="rect4"></div>
+  <div class="rect5"></div>
+</div>
+
+<div class="widgets" ng-show="show_reason_table">
+   <div class="row">
+    <div class="col-md-12" ba-panel ba-panel-class="with-scroll">
+<!-- <div class="horizontal-scroll" > -->
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -95,11 +116,14 @@
         <td class="align-middle">{{item.ip_address}}</td>
         <td class="align-middle">{{item.source}}</td>
         <td class="align-middle">{{item.rule}}</td>
-        <td class="align-middle"><button type="button" class="btn btn-danger" ng-click="get_detailed_stat_for_ip(item)">Aggregated Stats</button></td>
-        <td class="align-middle"><button type="button" class="btn btn-danger" ng-click="get_raw_packet(item)">Detailed Stats</button></td>
+        <td class="align-middle"><button type="button" class="btn mybtn btn-primary" ng-click="get_detailed_stat_for_ip(item)">Aggregated Stats</button></td>
+        <td class="align-middle"><button type="button" class="btn mybtn btn-primary" ng-click="get_raw_packet(item)">Detailed Stats</button></td>
+        <td><button type="button" class="btn mybtn btn-primary btn-with-icon" ng-click="download(item)"><i class="ion-nuclear"></i>Export to Excel</button></td>
       </tr>
     </tbody>
   </table>
+</div>
+</div>
 </div>
 
 <!-- <div class="btn-group-example" ng-show="show_reason_table">
@@ -157,7 +181,7 @@
 
 <div class="horizontal-scroll">
   <div ng-show="show_raw_stats">
-    <table class="table" st-table="raw_data" st-safe-src="raw_data1">
+    <table class="table table-bordered" st-table="raw_data" st-safe-src="raw_data1">
       <thead>
         <tr>
           <th class="align-middle">Time</th>
@@ -189,12 +213,12 @@
         </tr>
       </tbody>
       <tfoot>
-    <tr>
-      <td colspan="6" class="text-center">
-        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
-      </td>
-    </tr>
-    </tfoot>
+        <tr>
+          <td colspan="6" class="text-center">
+            <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+          </td>
+        </tr>
+      </tfoot>
     </table>
   </div>
 </div>

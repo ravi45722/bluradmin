@@ -78,7 +78,7 @@
 
 
 
-<div>
+<div ng-show="show_ui_tab_div">
 	<div class="row">
 		<div class="col-md-12">
 			<div ba-panel ba-panel-class="with-scroll horizontal-tabs tabs-panel medium-panel">
@@ -175,7 +175,7 @@ $(document).on("click","#sdate",function() {
 	});
 $(document).on("click","#edate",function() {
 	//$('#warrantyButton').on('click',function(){alert('bb')
-		$('#edate').datetimepicker({timepicker:false,format:'Y-m-d H:i'});
+		$('#edate').datetimepicker({timepicker:true,format:'Y-m-d H:i'});
 	});
 $(document).ready(function() {
 	$('.dateTimePicker').datetimepicker();

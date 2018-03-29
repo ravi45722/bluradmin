@@ -31,7 +31,7 @@
       subMenu: [{
         title: 'Sign In',
         fixedHref: 'auth.html',
-        blank: true
+        blank: false
       }, {
         title: 'Sign Up',
         fixedHref: 'reg.html',
@@ -45,7 +45,7 @@
         blank: true
       }]
     });
-    baSidebarServiceProvider.addStaticItem({
+    /*baSidebarServiceProvider.addStaticItem({
       title: 'Menu Level 1',
       icon: 'ion-ios-more',
       subMenu: [{
@@ -58,7 +58,7 @@
           disabled: true
         }]
       }]
-    });
+    });*/
   }
 
 })();

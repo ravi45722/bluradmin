@@ -67,16 +67,16 @@
 						lineColor: layoutColors.danger,
 					};*/ 
 					var Obj = {
-			          id: "g"+(i+1).toString(),
-			          balloonText: 'All [[value]]',
-			          bullet: 'round',
-			          bulletSize: 8,
-			          lineColor: layoutColors.danger,
-			          lineThickness: 1,
-			          negativeLineColor: layoutColors.warning,
-			          type: 'smoothedLine',
-			          valueField: 'All'
-			        }
+						id: "g"+(i+1).toString(),
+						balloonText: 'All [[value]]',
+						bullet: 'round',
+						bulletSize: 8,
+						lineColor: layoutColors.danger,
+						lineThickness: 1,
+						negativeLineColor: layoutColors.warning,
+						type: 'smoothedLine',
+						valueField: 'All'
+					}
 					$scope.graphs.push(Obj)
 				}
 				console.log($scope.graphs)
@@ -104,14 +104,14 @@
 			var layoutColors = baConfig.colors;
 			var Obj = {
 				id: "g1",
-			          balloonText: Obj.rule+' [[value]]',
-			          bullet: 'round',
-			          bulletSize: 8,
-			          lineColor: layoutColors.danger,
-			          lineThickness: 1,
-			          negativeLineColor: layoutColors.warning,
-			          type: 'smoothedLine',
-			          valueField: Obj.rule
+				balloonText: Obj.rule+' [[value]]',
+				bullet: 'round',
+				bulletSize: 8,
+				lineColor: layoutColors.danger,
+				lineThickness: 1,
+				negativeLineColor: layoutColors.warning,
+				type: 'smoothedLine',
+				valueField: Obj.rule
 
 				/*"id": "g1",
 				"bullet": "round",
@@ -133,19 +133,19 @@
 			var layoutColors = baConfig.colors;
 			var chart = AmCharts.makeChart("chartdiv", {
 				type: 'serial',
-				  theme: 'blur',
-				  color: layoutColors.defaultText,
-				  marginTop: 0,
-				  marginRight: 15,
-				  dataProvider: dataObj.data,
-				  valueAxes: [
-					{
-					  axisAlpha: 0,
-					  position: 'left',
-					  gridAlpha: 0.5,
-					  gridColor: layoutColors.border,
-					}
-				  ],
+				theme: 'blur',
+				color: layoutColors.defaultText,
+				marginTop: 0,
+				marginRight: 15,
+				dataProvider: dataObj.data,
+				valueAxes: [
+				{
+					axisAlpha: 0,
+					position: 'left',
+					gridAlpha: 0.5,
+					gridColor: layoutColors.border,
+				}
+				],
 				
 				/*"legend": {
 					"horizontalGap": 10,
@@ -178,13 +178,13 @@
 					"gridPosition": "start",
 				},
 				chartCursor: {
-        categoryBalloonDateFormat: 'YYYY MMM DD',
-        cursorAlpha: 0,
-        valueLineEnabled: true,
-        valueLineBalloonEnabled: true,
-        valueLineAlpha: 0.5,
-        fullWidth: true
-      },
+					categoryBalloonDateFormat: 'YYYY MMM DD',
+					cursorAlpha: 0,
+					valueLineEnabled: true,
+					valueLineBalloonEnabled: true,
+					valueLineAlpha: 0.5,
+					fullWidth: true
+				},
 				
 				/*"categoryAxis": {
 					"gridAlpha": 0.1,
@@ -198,10 +198,10 @@
  */
  chart.timeout;
  for( var i = 0; i < chart.graphs.length; i++ ) {
-	if ( i==0 )
-		chart.showGraph(chart.graphs[i]);
-	else
-		chart.hideGraph(chart.graphs[i]);
+ 	if ( i==0 )
+ 		chart.showGraph(chart.graphs[i]);
+ 	else
+ 		chart.hideGraph(chart.graphs[i]);
  }
 
 /* function setOpacity(graph, opacity) {
@@ -270,7 +270,7 @@
 				}
 			})
 
-}*/
+		}*/
 
 		/*$scope.get_rules_for_sid = function(Obj) {
 			$http({
@@ -294,6 +294,6 @@
 					$scope.ruleTableData1 = [].concat(response.data.data)
 				}
 			})
-}*/
-}
+		}*/
+	}
 })()
