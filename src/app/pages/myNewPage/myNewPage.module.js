@@ -4,7 +4,8 @@
 	angular.module('BlurAdmin.pages.myNewPage', [
 		'BlurAdmin.pages.myNewPage.fpAnalysis',
 		'BlurAdmin.pages.myNewPage.ipAnalysis',
-		'BlurAdmin.pages.myNewPage.topStats'
+		'BlurAdmin.pages.myNewPage.topStats',
+		'BlurAdmin.pages.myNewPage.brahmastra'
 
 		])
 	.config(routeConfig);
