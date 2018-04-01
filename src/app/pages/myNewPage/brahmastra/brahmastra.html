@@ -1,19 +1,125 @@
+<style type="text/css">
+.selected {
+	background-color:#00A492;
+	color:white;
+}
+</style>
+
 <div class="widgets">
 	<div class="row">
-		<div class="col-md-12" ba-panel ba-panel-class="with-scroll">
-			<form class="row form-inline">
-				<div class="form-group col-sm-2">
-					<input type="text" class="form-control" id="notsid" ng-model="formObject.sid" placeholder="Sid">
+		<div class="col-md-12">
+			<div ba-panel ba-panel-title="Initial Data Analysis Jobs" ba-panel-class="with-scroll">
+				<div class="add-row-editable-table">
+					<button class="btn btn-primary" ng-click="addJob()">Add New Job</button>
 				</div>
-				<div class="form-group col-sm-4">
-					<input type="text" class="form-control" id="domain" ng-model="formObject.domain" placeholder="Enter Domain">
-				</div>
-				<div class="form-group col-sm-3">
-					<input type="text" class="form-control" id="domain" ng-model="formObject.starturl" placeholder="Enter Start URL">
+				<form class="row form-inline" ng-show="show_new_job">
+					<div class="form-group col-sm-2">
+						<input type="text" class="form-control" id="notsid" ng-model="formObject.sid" placeholder="Sid">
+					</div>
+					<div class="form-group col-sm-4">
+						<input type="text" class="form-control" id="domain" ng-model="formObject.domain" placeholder="Enter Domain">
+					</div>
+					<div class="form-group col-sm-3">
+						<input type="text" class="form-control" id="domain" ng-model="formObject.starturl" placeholder="Enter Start URL">
+					</div>
+
+					<button type="submit" ng-click="submit(formObject)" class="btn btn-primary">Submit</button>
+				</form>
+				<div style="padding: 10px">
 				</div>
 
-				<button type="submit" ng-click="submit(formObject)" class="btn btn-primary">Submit</button>
-			</form>
+				
+				
+				
+				
+				
+
+				
+				<div id="left-content" class="col-md-5">
+					<table class="table table-bordered table-hover table-condensed" st-table="jobsdata" st-safe-src="jobsdata1">
+						<thead>
+							<tr class="sortable">
+								<!-- <th st-sort="id">Job Id</th> -->
+								<th st-sort="sid">Sid</th>
+								<th st-sort="site">Site</th>
+								<th st-sort="customer">Customer</th>
+								<th st-sort="status">Status</th>
+							</tr>
+
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in jobsdata" ng-class="{'selected':$index == selectedRow}" ng-click="setClickedRow($index)">
+								<!-- <td nowarap align="left">{{item.id}}</td> -->
+								<td>{{item.sid}}</td>
+								<td>{{item.site}}</td>
+								<td>{{item.customer}}</td>
+								<td>{{item.status}}</td>
+								<!-- <td>
+
+									<button type="button" class="btn btn-primary btn-icon"><i class="ion-android-download"></i></button>
+									<button type="button" class="btn btn-primary btn-icon"><i class="ion-android-download"></i></button>
+								</td> -->
+
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td colspan="6" class="text-center">
+									<div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+								</td>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+				
+				
+				<div ba-panel ba-panel-title="Details for selected Job" ba-panel-class="with-scroll" id="right-content" class="col-md-7" style="overflow: scroll; max-height: 1000px">
+					<json-formatter open="1" json=myjson></json-formatter>
+				</div>
+
+
+			</div>
 		</div>
 	</div>
 </div>
+
+<!-- <json-formatter open="1" json=myjson></json-formatter> -->
+
+
+
+
+
+
+
+
+<!-- <accordion close-others="oneAtATime" class="table">
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<div class="accordion-toggle">
+				<div class="cell">S</div>
+				<div class="cell">R</div>
+				<div class="cell">Se</div>
+				<div class="cell">D</div>
+				<div class="cell">Ser</div>
+				<div class="cell">L</div>
+			</div>
+		</div>
+	</div>
+	<accordion-group  ng-repeat="x in pro | orderBy:orderProp">
+		<accordion-heading>
+			<div class="row">
+				<div class="cell"><b>{{x.a}}</b></div>
+				<div class="cell">{{x.b}}</div>
+				<div class="cell"><u>{{x.c}}</u></div>
+				<div class="cell">{{x.d}}</div>
+				<div class="cell">{{x.e}}</div>
+				<div class="cell">{{x.f}}</div>
+			</div>
+		</accordion-heading>
+
+		<div>
+			Test Data
+		</div>
+
+	</accordion-group>
+</accordion>

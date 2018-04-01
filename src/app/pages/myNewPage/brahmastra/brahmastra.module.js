@@ -1,8 +1,13 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.myNewPage.brahmastra',[])
-      .config(routeConfig);
+  angular.module('BlurAdmin.pages.myNewPage.brahmastra',['jsonFormatter', 'angularResizable'])
+      .config(routeConfig)
+      .config(function (JSONFormatterConfigProvider) {
+
+  // Enable the hover preview feature
+  JSONFormatterConfigProvider.hoverPreviewEnabled = false;
+});
 
   /** @ngInject */
   function routeConfig($stateProvider) {
