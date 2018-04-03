@@ -4,8 +4,8 @@
 	angular.module('BlurAdmin.pages.myNewPage', [
 		'BlurAdmin.pages.myNewPage.fpAnalysis',
 		'BlurAdmin.pages.myNewPage.ipAnalysis',
-		'BlurAdmin.pages.myNewPage.topStats',
-		'BlurAdmin.pages.myNewPage.brahmastra'
+		'BlurAdmin.pages.myNewPage.topStats'
+		/*'BlurAdmin.pages.myNewPage.brahmastra'*/
 
 		])
 	.config(routeConfig);
@@ -17,7 +17,7 @@
 			url: '/myNewPage',
 			abstract: true,
 			template: '<div ui-view  autoscroll="true" autoscroll-body-top></div>',
-			title: 'My New Page',
+			title: 'Artemis',
 			sidebarMeta: {
 				icon: 'ion-stats-bars',
 				order: 150,

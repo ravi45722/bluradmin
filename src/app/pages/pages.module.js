@@ -16,16 +16,18 @@
     'BlurAdmin.pages.charts',
     'BlurAdmin.pages.maps',
     'BlurAdmin.pages.profile',
-    'BlurAdmin.pages.myNewPage'
+    'BlurAdmin.pages.myNewPage',
+    'BlurAdmin.pages.brahmastra',
+    'BlurAdmin.pages.loginAuth'
     
   ])
       .config(routeConfig);
 
   /** @ngInject */
   function routeConfig($urlRouterProvider, baSidebarServiceProvider) {
-    $urlRouterProvider.otherwise('/dashboard');
+    $urlRouterProvider.otherwise('/auth');
 
-    baSidebarServiceProvider.addStaticItem({
+    /*baSidebarServiceProvider.addStaticItem({
       title: 'Pages',
       icon: 'ion-document',
       subMenu: [{
@@ -44,7 +46,7 @@
         fixedHref: '404.html',
         blank: true
       }]
-    });
+    });*/
     /*baSidebarServiceProvider.addStaticItem({
       title: 'Menu Level 1',
       icon: 'ion-ios-more',

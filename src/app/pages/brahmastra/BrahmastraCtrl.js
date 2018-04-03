@@ -1,6 +1,6 @@
 (function () {
 	'use strict';
-	angular.module('BlurAdmin.pages.myNewPage.brahmastra')
+	angular.module('BlurAdmin.pages.brahmastra')
 	.controller('BrahmastraCtrl', BrahmastraCtrl);
 
 
@@ -54,7 +54,7 @@
 		
 		$scope.getUrlDetails = function(row) {
 			console.log("Calling the URL function")
-			$scope.openModalToShowUrls(row, "app/pages/myNewPage/brahmastra/modals/urlModals.html","md")
+			$scope.openModalToShowUrls(row, "app/pages/brahmastra/modals/urlModals.html","md")
 		}
 
 		$scope.getJobDetails = function (row) {

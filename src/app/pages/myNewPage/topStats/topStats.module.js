@@ -11,9 +11,9 @@
           url: '/topStats',
           controller: 'TopStatsCtrl',
           templateUrl: 'app/pages/myNewPage/topStats/topStats.html',
-          title: 'Top Stats',
+          title: 'Active Mode Upgrade',
           sidebarMeta: {
-            order: 0,
+            order: 3,
           },
         });
   }

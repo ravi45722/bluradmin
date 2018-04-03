@@ -1,0 +1,27 @@
+<main class="auth-main">
+	<div class="container">
+		<div class="auth-block">
+			<div class="row">
+
+				<div class="form-signin">
+					<div class="panel panel-default bootstrap-panel ">
+						<div class="panel-body">
+							<form ng-submit="login()">
+								<div class="form-group">
+
+									<input type="text" class="form-control" id="inputEmail3" placeholder="UserId" ng-model="username">
+
+									<input type="password" class="form-control" id="inputPassword3" placeholder="Password" ng-model="password">
+
+								</div>
+								<div class="alert alert-danger" ng-show="error" style="color:#DC3545;text-align:left;background-color:#fff;border-color:none;"><span>*&nbsp;</span>{{errorMessage}}</div>
+								<button type="submit" class="btn btn-lg btn-primary btn-block" ng-click="submit()">Sign in</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+
